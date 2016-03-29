@@ -13,6 +13,7 @@ class RatingControl: UIView {
     var ratingButtons = [UIButton]()
     let spacing = 5
     let starCount = 5
+    //var meal: Meal?
     
     var rating = 0 {
         didSet {
