@@ -42,6 +42,7 @@
                                     <outlet property="nameLabel" destination="AKz-sZ-MnE" id="qfe-S5-JME"/>
                                     <outlet property="photoImageView" destination="9px-09-8Qj" id="0SL-3t-y7D"/>
                                     <outlet property="ratingControl" destination="3GY-q9-4ha" id="1ey-LP-SYo"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="ShowDetail" id="Kqs-8i-r5h"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -53,7 +54,7 @@
                     <navigationItem key="navigationItem" title="Your Meals" id="mhD-Mf-tGz">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="ajE-Wy-nvT">
                             <connections>
-                                <segue destination="eVY-qA-h1g" kind="presentation" id="Utc-48-b8c"/>
+                                <segue destination="eVY-qA-h1g" kind="presentation" identifier="AddItem" id="Utc-48-b8c"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -138,7 +139,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1803" y="345"/>
+            <point key="canvasLocation" x="1779" y="337"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="CoS-U9-rAa">
@@ -174,10 +175,13 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hbg-48-EKW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="991" y="345"/>
+            <point key="canvasLocation" x="1047" y="913"/>
         </scene>
     </scenes>
     <resources>
         <image name="defaultPhoto" width="157" height="157"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="EQX-eP-D1e"/>
+    </inferredMetricsTieBreakers>
 </document>

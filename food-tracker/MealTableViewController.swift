@@ -27,12 +27,12 @@ class MealTableViewController: UITableViewController {
         meals.append(Meal(
             name: "Chicken and Potatoes",
             photo: UIImage(named: "defaultPhoto")!,
-            rating: 4)!)
+            rating: 3)!)
         
         meals.append(Meal(
             name: "Pasta with Meatballs",
             photo: UIImage(named: "defaultPhoto")!,
-            rating: 4)!)
+            rating: 2)!)
     }
 
     override func didReceiveMemoryWarning() {
@@ -101,23 +101,50 @@ class MealTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "ShowDetail" {
+            let mealDetailViewController = segue.destinationViewController as! MealViewController
+            
+            // Get the cell that generated this segue.
+            if let selectedMealCell = sender as? MealTableViewCell {
+                let indexPath = tableView.indexPathForCell(selectedMealCell)!
+                let selectedMeal = meals[indexPath.row]
+                mealDetailViewController.meal = selectedMeal
+            }
+            
+            presentViewController(mealDetailViewController, animated: true, completion: nil)
+        }
+        else if segue.identifier == "AddItem" {
+            print("Adding new meal.")
+        }
     }
-    */
+ 
     
     @IBAction func unwindToMealList(sender: UIStoryboardSegue) {
-        if let sourceViewController = sender.sourceViewController as? MealViewController, meal = sourceViewController.meal {
+        
+        guard let sourceViewController = sender.sourceViewController as? MealViewController, meal = sourceViewController.meal else {
+            return
+        }
+        
+        if let selectedIndexPath = tableView.indexPathForSelectedRow {
+            // Update an existing meal.
+            meals[selectedIndexPath.row] = meal
+            tableView.reloadRowsAtIndexPaths([selectedIndexPath], withRowAnimation: .None)
+        }
+        else {
+        
             // Add a new meal.
             let newIndexPath = NSIndexPath(forRow: meals.count, inSection: 0)
             meals.append(meal)
-            tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
+            
+            tableView.insertRowsAtIndexPaths(
+                [newIndexPath], withRowAnimation: .Bottom)
         }
+        
     }
 
 }
